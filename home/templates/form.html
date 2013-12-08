@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{% block entrance %}  {% endblock %}
+{% block content %} 
+<form action="." method="post">{% csrf_token %}
+    <fieldset>
+        <legend>
+        {% block legend %}
+        {% endblock %}
+        </legend>
+    
+        <table>
+            {{ form.as_table }}
+        </table>
+    </fieldset>
+    <input type="submit" value="submit"/>
+    {% block append%}
+    {% endblock %}
+</form>
+    {% block extra%}
+    {% endblock %}
+{% endblock %}
+

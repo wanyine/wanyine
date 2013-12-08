@@ -1,0 +1,8 @@
+{% extends "form.html"%}
+{% block legend %} 登录 {% endblock %} 
+{% block append %}
+<input type="hidden" name="next" value="/home/">
+{% endblock %}
+{% block extra%}
+    <button onclick="location.href='/signup/'">Hava no account? register now!</button>
+{% endblock %}

@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+{% block title %} home {% endblock %}
+{% block content %} 
+<style>
+    #main{
+        width:700px;
+        padding-left:10px;
+        float:left;
+    }
+
+    #main .title{
+        border-bottom:3px solid;
+    } 
+
+    #aside{
+        float:right;
+        width:200px;
+    }
+    #release{
+        float:right;
+        margin-top:5em;
+    }
+
+    #release button span{
+        font-size:150%;
+        font-weight:bold;
+    }
+
+    table{width:100%}
+
+    table thead{visibility:hidden}
+
+    tbody tr td{
+        border-top:1px solid #CCC;
+        border-bottom:1px solid #CCC;
+        padding:4px;
+    }
+
+    .entry{
+        font-size:13px;
+        color:#969696;
+    }
+
+</style>
+
+<div id="main">
+    <div class="title">
+        正在寻求担保人的项目
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>summary</th>
+                    <th>amount</th>
+                    <th>progress</th>
+                    <th>grade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for policy in policies %}
+                <tr>
+                    <td width="20%">
+                        <div>{{policy.title}}</div>
+                        <div class="entry">{{policy.catagory}}</div>
+                    </td>
+
+                    <td>
+                        <div><span class="entry">保额</span> ￥{{policy.sum}} </div>
+                        <div><span class="entry">保期</span> {{policy.kickoff|date:"Y.m.d"}}-{{policy.deadline|date:"Y.m.d"}} </div>
+                    </td>
+                    <td>
+                        <div><span class="entry">已募集</span> {{policy.funded}}</div>
+                        <div><span class="entry">剩余时间</span> {{policy.kickoff|timeuntil}}</div>
+                    </td>
+                    <td>
+                        <div><span class="entry">风险等级</span> {{policy.grade}} </div>
+                        <div><span class="entry">担保奖励</span> {{ policy.reward }}% </div>
+                    </td>
+                    <td>
+                        <button onclick="location.href='/guarantee/{{policy.id}}/'">我要担保</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div id="aside">
+<div id="release">
+    <button onclick="location.href='/sponse/'"><span>我要投保</span></button>
+</div>
+</div>
+
+
+{% endblock %}
