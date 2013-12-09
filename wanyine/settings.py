@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'home',
     'dajaxice',
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
